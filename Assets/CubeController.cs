@@ -14,7 +14,7 @@ public class CubeController : MonoBehaviour
     //地面の位置
     private float groundLevel = -3.0f;
     private GameObject cube;
-
+    bool item = true;
 
 
     // Start is called before the first frame update
@@ -37,11 +37,25 @@ public class CubeController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if (this.item)
+        {
+            AudioSource.PlayClipAtPoint(sound, transform.position);
+        }
+
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        AudioSource.PlayClipAtPoint(sound, transform.position);
+        if (other.gameObject.tag == "cube" || other.gameObject.tag == "ground")
+        {
+            this.item = true;
+        
+        }
+        else
+        {
+            this.item = false;
+        }
     }
 
 }
