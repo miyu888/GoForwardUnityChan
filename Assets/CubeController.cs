@@ -10,21 +10,17 @@ public class CubeController : MonoBehaviour
     //消滅位置
     private float deadLine = -10;
 
+    public AudioSource audioSource;
     public AudioClip sound;
-    //地面の位置
-    private float groundLevel = -3.0f;
     private GameObject cube;
-    bool item = true;
 
 
     // Start is called before the first frame update
     void Start()
     {
         this.cube = GameObject.Find("CubePrefab");
+        audioSource = GetComponent<AudioSource>();
 
-        //着地しているか調べる
-        bool isGround = (transform.position.y > this.groundLevel) ? false : true;
-       
     }
 
     // Update is called once per frame
@@ -37,25 +33,17 @@ public class CubeController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        if (this.item)
-        {
-            AudioSource.PlayClipAtPoint(sound, transform.position);
-        }
-
+        
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "cube" || other.gameObject.tag == "ground")
+        if (gameObject.tag == "cube" || other.gameObject.tag == "ground")
         {
-            this.item = true;
-        
+            //音を出す
+            audioSource.PlayOneShot(sound);
         }
-        else
-        {
-            this.item = false;
-        }
+       
     }
 
 }

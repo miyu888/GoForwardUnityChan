@@ -557,6 +557,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UnityChan2D
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1355a58c3bd9c40679bea54b926e0179, type: 3}
+      propertyPath: m_TagString
+      value: unitychan
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1355a58c3bd9c40679bea54b926e0179, type: 3}
       propertyPath: m_RootOrder
       value: 1
